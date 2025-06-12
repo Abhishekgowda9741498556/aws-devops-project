@@ -1,1 +1,12 @@
 
+[ GitHub ] → [ Jenkins ] → [ SonarQube ]
+                      ↓
+                 [ Docker Build ]
+                      ↓
+                 [ Nexus Repo ]
+                      ↓
+              [ Terraform → AWS EKS ]
+                      ↓
+           [ Helm Deploy → Kubernetes ]
+                      ↓
+[ Prometheus ] ← Metrics → [ Grafana ]
