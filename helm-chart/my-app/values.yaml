@@ -1,0 +1,10 @@
+replicaCount: 2
+
+image:
+  repository: yourdockerhubuser/yourapp
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
