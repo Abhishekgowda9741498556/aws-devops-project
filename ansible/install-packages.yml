@@ -1,0 +1,25 @@
+---
+- name: Install Web + Monitoring tools
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: true
+
+    - name: Start Apache2
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Install New Relic (optional)
+      shell: |
+        echo "deb http://apt.newrelic.com/debian/ newrelic non-free" >> /etc/apt/sources.list.d/newrelic.list
+        wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
+        apt-get update
+        apt-get install newrelic-sysmond -y
+        nrsysmond-config --set license_key=YOUR_LICENSE
+        service newrelic-sysmond start
